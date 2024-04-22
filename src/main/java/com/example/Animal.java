@@ -1,16 +1,20 @@
 package com.example;
 
+import com.example.constants.ExceptionMessage;
+import com.example.enums.AnimalKind;
+
 import java.util.List;
 
 public class Animal {
 
-    public List<String> getFood(String animalKind) throws Exception {
-        if ("Травоядное".equals(animalKind)) {
+    public List<String> getFood(AnimalKind animalKind) throws Exception {
+        //TODO вынести так же еду в перечисления
+        if (AnimalKind.HERBIVORE.equals(animalKind)) {
             return List.of("Трава", "Различные растения");
-        } else if ("Хищник".equals(animalKind)) {
+        } else if (AnimalKind.PREDATOR.equals(animalKind)) {
             return List.of("Животные", "Птицы", "Рыба");
         } else {
-            throw new Exception("Неизвестный вид животного, используйте значение Травоядное или Хищник");
+            throw new Exception(ExceptionMessage.NOT_ALLOWED_ANIMAL_KIND);
         }
     }
 
