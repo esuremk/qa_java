@@ -4,6 +4,7 @@ import com.example.Feline;
 import com.example.Lion;
 import com.example.constants.ExceptionMessage;
 import com.example.enums.AnimalFood;
+import com.example.enums.AnimalKind;
 import com.example.enums.Sex;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -40,16 +43,25 @@ public class LionTest {
     Feline mockFeline;
     //Хорошо ли в одном классе располагать тесты с моками и с реальными объектами ?
     @Test
-    public void lionFunctionGetKittensTest() throws Exception {
+    public void lionMockGetKittensTest() throws Exception {
         Lion lion = new Lion(Sex.MALE, mockFeline);
         lion.getKittens();
         Mockito.verify(mockFeline).getKittens();
     }
 
     @Test
-    public void lionFunctionGetFoodTest() throws Exception {
+    public void lionMockGetFoodTest() throws Exception {
         Lion lion = new Lion(Sex.MALE, mockFeline);
         lion.getFood();
-        Mockito.verify(mockFeline).eatMeat();
+        Mockito.verify(mockFeline).getFood(AnimalKind.PREDATOR);
     }
+
+    @Test
+    public void lionGetFoodWhitWhenMockTest() throws Exception {
+        Lion lion = new Lion(Sex.MALE, mockFeline);
+        List<String> expectedFood = List.of("Еда1", "Еда2");
+        Mockito.when(mockFeline.getFood(AnimalKind.PREDATOR)).thenReturn(expectedFood);
+        assertEquals(expectedFood, lion.getFood());
+    }
+
 }

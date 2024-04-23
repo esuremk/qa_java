@@ -1,18 +1,17 @@
 package com.example;
 
 import com.example.constants.ExceptionMessage;
+import com.example.enums.AnimalKind;
 import com.example.enums.Sex;
 
 import java.util.List;
 
 public class Lion {
 
-    Predator predator;
     Feline feline;
     boolean hasMane;
 
     public Lion(Sex sex, Feline feline) throws Exception {
-        this.predator = feline;
         this.feline = feline;
 
         if (Sex.MALE.equals(sex)) {
@@ -33,6 +32,6 @@ public class Lion {
     }
 
     public List<String> getFood() throws Exception {
-        return predator.eatMeat();
+        return feline.getFood(AnimalKind.PREDATOR);
     }
 }
