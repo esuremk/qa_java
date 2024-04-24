@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.enums.AnimalSound;
+
 import java.util.List;
 
 public class Cat {
@@ -10,8 +12,8 @@ public class Cat {
         this.predator = feline;
     }
 
-    public String getSound() {
-        return "Мяу";
+    public AnimalSound getSound() {
+        return AnimalSound.MEOW;
     }
 
     public List<String> getFood() throws Exception {
