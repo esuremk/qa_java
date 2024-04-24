@@ -12,9 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
@@ -57,11 +54,9 @@ public class LionTest {
     }
 
     @Test
-    public void lionGetFoodWhitWhenMockTest() throws Exception {
+    public void lionGetKittensWhitWhenThenMockTest() throws Exception {
         Lion lion = new Lion(Sex.MALE, mockFeline);
-        List<String> expectedFood = List.of("Еда1", "Еда2");
-        Mockito.when(mockFeline.getFood(AnimalKind.PREDATOR)).thenReturn(expectedFood);
-        assertEquals(expectedFood, lion.getFood());
+        Mockito.when(mockFeline.getKittens()).thenReturn(5);
+        assertEquals(5, lion.getKittens());
     }
-
 }
